@@ -1,0 +1,53 @@
+local function garbage_maker()
+	local id = signpost.start("create trash")
+	local garbage_size = 8192
+	local garbage = {}
+	for i = 1, garbage_size do
+		garbage[i] = {}
+		local subscope = signpost.start("subscope "..i)
+		for j = 1, garbage_size do
+			garbage[i][j] = i+j
+		end
+		signpost.stop(subscope)
+	end
+	signpost.stop(id, garbage_size * garbage_size)
+end
+-- 
+-- function update(self, dt)
+-- 	signpost.event("update: "..dt)
+-- 	msg.post("#", "gimme garbage")
+-- 	if self.counter == 5 then
+-- 		local id = signpost.start("collect garbage")
+-- 		collectgarbage("collect")
+-- 		signpost.stop(id)
+-- 		self.counter = 0
+-- 	end
+-- 	if not self.counter then 
+-- 		self.counter = 0
+-- 	end
+-- 	self.counter = self.counter + 1
+-- end
+-- 
+-- function on_message(self, message_id, message, sender)
+-- 	signpost.event("on_message: "..message_id)
+-- 	if message_id == hash("gimme garbage") then
+-- 		garbage_maker()
+-- 	end
+-- end
+-- 
+
+function update(self)
+	if not self.upd then
+		self.upd = 0
+	end
+	self.upd = self.upd +1 
+	if self.upd == 10 then
+		print(self.upd)
+		timer.delay(1, false,  garbage_maker)
+		timer.delay(2, false, function() 
+			signpost.event("string_info")
+		end)
+	end
+
+	
+end

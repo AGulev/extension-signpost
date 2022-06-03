@@ -1,0 +1,9 @@
+name: "signpost"
+
+platforms:
+  ios:
+    context:
+        frameworks: ["Foundation"]
+  osx:
+    context:
+        frameworks: ["Foundation"]
