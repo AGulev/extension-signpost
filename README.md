@@ -1,5 +1,5 @@
 # signpost
-Defold engine native extension, that helps to mark a point of interest in Xcode Instruments.
+Defold engine native extension, that helps to mark points of interest in Xcode Instruments.
 
 ## API
 
