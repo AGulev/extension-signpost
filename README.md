@@ -1,6 +1,12 @@
 # signpost
 Defold engine native extension, that helps to mark points of interest in Xcode Instruments.
 
+
+
+https://user-images.githubusercontent.com/2209596/171910263-78ffab24-1be8-4537-a7f9-7725971c39c1.mp4
+
+
+
 ## API
 
 ```Lua
