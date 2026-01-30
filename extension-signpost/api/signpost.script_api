@@ -1,0 +1,50 @@
+- name: signpost
+  type: table
+  desc: Functions for marking points of interest in Xcode Instruments using signposts (iOS/macOS only).
+
+  members:
+
+  - name: start
+    type: function
+    desc: Start a signpost interval and return its identifier.
+
+    parameters:
+    - name: scope_name
+      type: string
+      desc: Name shown in Instruments for the interval.
+
+    returns:
+    - name: id
+      type: number
+      desc: Signpost identifier to pass to `signpost.stop`.
+
+    examples:
+      - desc: |-
+                 ```lua
+                 local id = signpost.start("loading")
+                 -- do work
+                 signpost.stop(id, "done")
+                 ```
+
+  - name: stop
+    type: function
+    desc: End a signpost interval started with `signpost.start`.
+
+    parameters:
+    - name: id
+      type: number
+      desc: Identifier returned by `signpost.start`.
+
+    - name: info
+      type: string
+      optional: true
+      desc: Optional info string shown in Instruments when the interval ends.
+
+  - name: event
+    type: function
+    desc: Emit a point-in-time signpost event.
+
+    parameters:
+    - name: info
+      type: string
+      desc: Event info string shown in Instruments.
